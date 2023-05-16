@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form (submit)="login()">
+      <h3>login</h3>
+      <div class="alert alert-danger" [hidden]="!app.loginErr">
+        {{ app.loginErr }}
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          [(ngModel)]="credentials.username"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          [(ngModel)]="credentials.password"
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">submit</button>
+    </form>
+  </body>
+</html>

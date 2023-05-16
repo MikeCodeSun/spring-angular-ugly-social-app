@@ -1,0 +1,36 @@
+<div [hidden]="!post" class="card">
+  <div class="card-header">{{ post?.created_by?.username }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ post?.content }}</h5>
+    <p class="card-text">{{ post?.createdAt }}</p>
+    <div
+      [hidden]="!checkPostAuthor()"
+      class="btn-group"
+      role="group"
+      aria-label="Basic mixed styles example"
+    >
+      <button type="button" class="btn btn-danger" (click)="deletePost()">
+        delete
+      </button>
+      <button type="button" class="btn btn-warning" (click)="openEdit()">
+        edit
+      </button>
+    </div>
+  </div>
+</div>
+
+<div [hidden]="post" class="alert alert-warning" role="alert">
+  no post found, try again!
+</div>
+
+<form [hidden]="!isEdit" (submit)="updatePost()">
+  <textarea
+    placeholder="{{ post?.content }}"
+    class="form-control"
+    rows="5"
+    name="editContent"
+    [(ngModel)]="editContent"
+  ></textarea>
+  <div [hidden]="!editErr" class="alert alert-danger">{{ editErr }}</div>
+  <button class="btn btn-success">Edit</button>
+</form>

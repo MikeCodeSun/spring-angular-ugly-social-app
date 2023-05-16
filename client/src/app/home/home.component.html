@@ -1,0 +1,10 @@
+<h1>hello {{ username }}</h1>
+
+<ul class="list-group">
+  <li *ngFor="let post of posts.slice().reverse()" class="list-group-item">
+    <a routerLink="/user/{{ post.created_by.id }}" class="fs-5 fw-bolder">
+      {{ post.created_by.username }}:
+    </a>
+    <a routerLink="/post/{{ post.id }}">{{ post.content }}</a>
+  </li>
+</ul>

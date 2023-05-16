@@ -1,0 +1,21 @@
+<form [hidden]="!isUserlogin" method="post" (submit)="onSubmit()">
+  <textarea
+    rows="2"
+    class="textarea form-control"
+    [(ngModel)]="content"
+    name="postContent"
+  ></textarea>
+  <div [hidden]="!contentInputErr" class="alert alert-danger">
+    {{ contentInputErr }}
+  </div>
+  <button type="submit" class="btn btn-primary">send</button>
+</form>
+
+<ul class="list-group">
+  <li *ngFor="let post of posts" class="list-group-item">
+    <a routerLink="/user/{{ post.created_by.id }}" class="fs-5 fw-bolder">
+      {{ post.created_by.username }}:
+    </a>
+    <a routerLink="{{ post.id }}">{{ post.content }}</a>
+  </li>
+</ul>

@@ -1,0 +1,29 @@
+package com.example.server.handler;
+
+import java.io.IOException;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.AuthenticationException;
+
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@Configuration
+public class CustomLoginFailureHandler implements  AuthenticationFailureHandler {
+  @Override
+  public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+      AuthenticationException exception) throws IOException, ServletException {
+      String errorMessage = exception.getMessage();
+      System.out.println("failure error:" + errorMessage);
+      
+      // response.sendError(500, errorMessage);
+        // response.sendRedirect("/errormsg/"+errorMessage);
+      response.getWriter().write(errorMessage);
+      // response.setHeader("err", errorMessage);
+  
+      
+  }
+}
